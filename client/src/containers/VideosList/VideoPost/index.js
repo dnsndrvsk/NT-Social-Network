@@ -3,8 +3,8 @@ import { openVideoPlayer } from '../../../actions/video-player/open-close'
 import VideoPostComponent from '../../../components/VideosList/VideoPost'
 
 const mapDispatchTpProps = dispatch => ({
-  openVideoPlayer: () => {
-    dispatch(openVideoPlayer())
+  openVideoPlayer: (videoData) => {
+    dispatch(openVideoPlayer(videoData))
   }
 })
 

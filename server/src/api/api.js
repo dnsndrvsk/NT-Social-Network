@@ -6,6 +6,7 @@ import getActions from './user-actions'
 
 export default (ctx) => {
   const api = AsyncRouter()
+  const User = ctx.models.User
   
   api.all('/', () => ({ok: true, version: '1.0.1'}))
   api.use('/auth', getAuth(ctx))
@@ -13,7 +14,6 @@ export default (ctx) => {
   
   
   api.get('/data/getuser', async (req,res) => {
-    const User = ctx.models.User
     const userID = req.query.userID
     let curUserID
     if (req.query.curUserID) {
@@ -81,7 +81,6 @@ export default (ctx) => {
   })
   
   api.get('/data/getusers', async (req,res) => {
-    const User = ctx.models.User
     const filters = req.query
     const isNoFilters = _.isEmpty(filters)
     let filter
@@ -108,6 +107,24 @@ export default (ctx) => {
       return err
     }
   })
+  
+  api.get('/data/updateuser', async (req,res) => {
+    const userID = req.query.userID
+    
+    try {
+      const user = await User.findById({ _id: userID })
+        .populate('requests')
+        .populate('newmessages.user')
+        .populate('messages.receiver')
+      
+      res.json({
+        user
+      })
+    } catch (err) {
+      return err
+    }
+  })
+  
   
   api.all('/timeout', (req, res) => {
     return new Promise(resolve => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import CenteredLayout from '../../layouts/CenteredLayout'
-import RegistrationForm from '../../containers/RegistrationForm'
+import RegistrationForm from '../../containers/Forms/RegistrationForm'
 import WithRouterLogged from '../../containers/WithRouter/WithRouterLogged'
 
 

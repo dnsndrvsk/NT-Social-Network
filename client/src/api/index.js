@@ -66,6 +66,16 @@ export default {
     })
   },
   
+  updateUserData(data) {
+    return $.ajax({
+      url: "/api/data/updateuser",
+      type: "GET",
+      data: data,
+      dataType: 'json',
+      ContentType: 'application/json'
+    })
+  },
+  
   sendFriendRequest(data, token) {
     return $.ajax({
       url: "/api/actions/sendrequest",

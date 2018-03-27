@@ -10,7 +10,8 @@ const mapDispatchToProps = dispatch => ({
 
 const VideoPlayer = connect(state => ({
   user: state.viewableUser,
-  isOpen: state.videoPlayer.isOpen
+  isOpen: state.videoPlayer.isOpen,
+  playing: state.videoPlayer.playing
 }), mapDispatchToProps)(VideoPlayerComponent)
 
 export default VideoPlayer

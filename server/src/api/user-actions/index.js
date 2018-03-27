@@ -18,6 +18,8 @@ const getToken = (req) => {
 
 export default (ctx) => {
   const api = AsyncRouter()
+  const User = ctx.models.User
+  
   //route middleware to verify a token
   api.use((req, res, next) => {
     const token = getToken(req)
@@ -36,7 +38,6 @@ export default (ctx) => {
   
   api.post('/updatestatus', async (req,res) => {
     const { userID, status } = req.body
-    const User = ctx.models.User
     
     try {
       await User.update({ _id: userID }, { status: status })
@@ -55,7 +56,6 @@ export default (ctx) => {
       user: req.body.userID,
       comment: req.body.comment
     }
-    const User = ctx.models.User
     
     try {
       await User.update(
@@ -81,7 +81,6 @@ export default (ctx) => {
   
   api.post('/deletecomment', async (req,res) => {
     const { userID, commentID } = req.body
-    const User = ctx.models.User
     
     try {
       await User.update(
@@ -103,7 +102,6 @@ export default (ctx) => {
   
   api.post('/sendrequest', async(req, res) => {
     const { userID, friendID } = req.body
-    const User = ctx.models.User
     
     try {
       await User.update(
@@ -120,7 +118,6 @@ export default (ctx) => {
   
   api.post('/acceptrequest', async (req, res) => {
     const { userID, friendID } = req.body
-    const User = ctx.models.User
     try {
       const user = await User.findById({ _id: userID })
       const alreadyFriends = await User.find({
@@ -177,7 +174,6 @@ export default (ctx) => {
   
   api.post('/removefriend', async (req, res) => {
     const { userID, friendID } = req.body
-    const User = ctx.models.User
     
     try {
       await User.update(
@@ -201,7 +197,6 @@ export default (ctx) => {
   
   api.post('/deleterequest', async (req, res) => {
     const { userID, friendID } = req.body
-    const User = ctx.models.User
     
     try {
       await User.update(
@@ -221,7 +216,6 @@ export default (ctx) => {
   
   api.post('/sendmessage', async (req, res) => {
     const { userID, friendID, message } = req.body
-    const User = ctx.models.User
     
     try {
       const chatExist = await User.find({
@@ -409,7 +403,6 @@ export default (ctx) => {
   
   api.get('/getmessages', async (req, res) => {
     const { userID, friendID } = req.query
-    const User = ctx.models.User
     
     try {
       /************REMOVING NEW MESSAGE IF EXIST*************/
@@ -444,7 +437,6 @@ export default (ctx) => {
   
   api.post('/deletemessage', async (req,res) => {
     const { userID, friendID, messageID } = req.body
-    const User = ctx.models.User
     
     try {
       await User.update(
@@ -469,7 +461,6 @@ export default (ctx) => {
   
   api.post('/setavatar', async (req, res) => {
     const { userID, avatar } = req.body
-    const User = ctx.models.User
     
     try {
       await User.update({ _id: userID }, { 'avatar': avatar })
@@ -489,7 +480,6 @@ export default (ctx) => {
   
   api.post('/likeavatar', async (req, res) => {
     const { userID, friendID } = req.body
-    const User = ctx.models.User
     let isLiked
     
     try {
@@ -530,7 +520,6 @@ export default (ctx) => {
   
   api.post('/addvideo', async (req,res) => {
     const { userID, url, title } = req.body
-    const User = ctx.models.User
     const data = { url, title }
     
     try {

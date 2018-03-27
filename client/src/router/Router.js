@@ -14,7 +14,7 @@ import HomePage from '../components/HomePage'
 import RegistrationPage from '../components/RegistrationPage'
 import VerificationPage from '../components/VerificationPage'
 import LoginPage from '../components/LoginPage'
-import UserPage from '../containers/UserPage'
+import UserProfile from '../containers/UserProfile'
 import SearchPage from '../containers/SearchPage'
 import ChatPage from '../containers/ChatPage'
 import VideosPage from '../containers/VideosPage'
@@ -35,7 +35,7 @@ const Routes = () => {
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registration" component={RegistrationPage} />
                 <Route path="/verification" component={VerificationPage} />
-                <Route path="/userpage/:id" component={UserPage} />
+                <Route path="/userpage/:id" component={UserProfile} />
                 <Route path="/friends" component={SearchPage} />
                 <Route path="/chatroom/:id" component={ChatPage} />
                 <Route path="/videos/:id" component={VideosPage} />

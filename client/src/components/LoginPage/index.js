@@ -1,7 +1,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import CenteredLayout from '../../layouts/CenteredLayout'
-import LoginForm from '../../containers/LoginForm'
+import LoginForm from '../../containers/Forms/LoginForm'
 import WithRouterLogged from '../../containers/WithRouter/WithRouterLogged'
 
 const LoginPage = (props) => (

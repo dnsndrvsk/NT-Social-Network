@@ -1,8 +1,9 @@
 import * as actionTypes from '../../constants'
 
 
-export const openVideoPlayer = () => ({
-  type: actionTypes.OPEN_VIDEO_PLAYER
+export const openVideoPlayer = (videoData) => ({
+  type: actionTypes.OPEN_VIDEO_PLAYER,
+  payload: { videoData }
 })
 
 export const closeVideoPlayer = () => ({

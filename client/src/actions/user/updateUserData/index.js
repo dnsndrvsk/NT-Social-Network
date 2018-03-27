@@ -10,8 +10,9 @@ export const updateUserData = () => async dispatch => {
   if (userID) {
     const data = { userID }
     
-    api.getUserData(data)
+    api.updateUserData(data)
       .then(response => {
+      console.log(response)
         dispatch({
           type: actionTypes.UPDATE_USER_DATA,
           payload: { activeUser: response.user }

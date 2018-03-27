@@ -19,11 +19,6 @@ const VideoPost = (props) => {
   const { dayN, dayC, year } = getAllDateData(date)
   const thumbnail = getVideoThumb(url, 2)
   
-  const openThing = () => {
-    console.log('abc')
-    props.openVideoPlayer()
-  }
-  
   return (
     <Card className="video-post">
       <div className="video-post__header">
@@ -34,7 +29,7 @@ const VideoPost = (props) => {
       </div>
       <div
         className="video-post__image"
-        onClick={openThing} 
+        onClick={ () => {props.openVideoPlayer(props.data)} } 
       >
         <img src={thumbnail} alt={title} />
         <div className="video-post__overlay">
@@ -57,7 +52,3 @@ VideoPost.propTypes = {
 
 
 export default VideoPost
-
-
-
-//src={this.props.url + '?autoplay=0'}
