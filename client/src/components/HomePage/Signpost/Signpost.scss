@@ -1,0 +1,22 @@
+.signpost {
+  
+  &__wrapper {
+    padding: 20px 0;
+  }
+  
+  &__text {
+    margin: 10px 0;
+  }
+  
+  &__links {
+    padding: 20px 0;
+  }
+  
+  &__links > * {
+    display: inline-block;
+  }
+  
+  &__links > div {
+    margin: 0 20px;
+  }
+}

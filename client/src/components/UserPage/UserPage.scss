@@ -1,0 +1,17 @@
+.user-page {
+  
+  &__item {
+    margin-bottom: 30px;
+  }
+  
+  &__btns:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  &__btns > * {
+    float: left;
+    width: 50%;
+  }
+}

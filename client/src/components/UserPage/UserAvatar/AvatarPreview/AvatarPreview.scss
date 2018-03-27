@@ -1,0 +1,19 @@
+.avatar-preview {
+  
+  &__image {
+    display: block;
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  &__link {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: #808080;
+  }
+  
+  div.row {
+    margin: 0;
+  }
+}

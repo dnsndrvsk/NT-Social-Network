@@ -1,0 +1,22 @@
+.search-filter {
+  
+  
+  &__wrap-inner {
+    padding: 0 20px 20px;
+  }
+  
+  &__field {
+    margin-bottom: 30px;
+    color: #BDBDBD;
+    font-weight: 100;
+  }
+  
+  &__field-header {
+    padding: 5px;
+    text-align: right;
+  }
+  
+  &__btns > div:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}

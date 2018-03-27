@@ -1,0 +1,13 @@
+.spinner-page {
+  
+  &__table {
+    height: 100vh;
+    width: 100%;
+    display: table;
+  }
+  
+  &__cell {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}

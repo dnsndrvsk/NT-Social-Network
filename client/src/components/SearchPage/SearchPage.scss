@@ -1,0 +1,24 @@
+.friends-page {
+  
+  &__empty {
+    padding: 40px 0;
+    text-align: center;
+    
+    div {
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.5;
+      color: #808080;
+    }
+  }
+  
+  div.col {
+    margin-bottom: 30px;
+  }
+  
+  &__result {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #BDBDBD;
+  }
+}

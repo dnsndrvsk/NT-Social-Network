@@ -1,0 +1,45 @@
+.comment {
+  border-bottom: solid 1px #e7e7e7;
+  word-wrap: break-word;
+  
+  &__name {
+    float: left;
+  }
+  
+  &__date {
+    float: right;
+    font-size: 12px;
+    text-align: right;
+  }
+  
+  &__time > *,
+  &__day > * {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  div.row {
+    margin: 0;
+  }
+  
+  &__details {
+    margin-bottom: 10px;
+    color: #808080;
+  }
+  
+  &__details:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  &__message {
+    padding: 5px 0;
+    font-size: 18px;
+    font-style: italic;
+  }
+}
+
+.comment:last-of-type {
+  border-bottom: none;
+}

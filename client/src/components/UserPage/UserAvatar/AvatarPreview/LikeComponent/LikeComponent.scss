@@ -1,0 +1,16 @@
+.like-comp {
+  text-align: center;
+  
+  &__count {
+    margin: 10px 0 20px;
+    color: #808080;
+  }
+  
+  &__rest {
+    margin-top: 20px;
+  }
+  
+  &__avatar {
+    margin: 5px;
+  }
+}

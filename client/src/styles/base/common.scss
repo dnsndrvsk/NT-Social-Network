@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 480px;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background-color: #f0f0f0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.5;
+  color: #4b4b4b;
+}
+
+p {
+  line-height: 1.5;
+  color: #808080;
+}
+
+a {
+  color: #808080;
+  text-decoration: none;
+}
+
+/******************************SCROLLBAR******************************/
+::-webkit-scrollbar {
+    display: none;
+}
+ 
+::-webkit-scrollbar-track {
+    display: none;
+}
+ 
+::-webkit-scrollbar-thumb {
+    display: none;
+}
+/******************************SCROLLBAR******************************/
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,26 @@
+.video-form {
+  
+  &__btns:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  &__btns > * {
+    float: left;
+    width: 50%;
+  }
+  
+  &__btns > div:first-child:last-of-type {
+    float: left;
+    width: 100%;
+  }
+  
+  &__fields {
+    margin-bottom: 20px;
+  }
+  
+  &__preview {
+    margin-bottom: 30px;
+  }
+}

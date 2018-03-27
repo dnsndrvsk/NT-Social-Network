@@ -1,0 +1,18 @@
+.request-notif {
+  
+  &__wrap-inner {
+    position: relative;
+  }
+  
+  &__items {
+    position: absolute;
+    width: 420px;
+    top: 50px;
+    right: 50px;
+  }
+  
+  &__btns-wrap {
+    top: 10px !important;
+    right: 14px !important;
+  }
+}

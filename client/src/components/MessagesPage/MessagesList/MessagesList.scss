@@ -1,0 +1,11 @@
+.messages-list {
+  
+  &__empty-wrap {
+    padding: 50px;
+    text-align: center;
+    
+    a p {
+      font-weight: 700;
+    }
+  }
+}

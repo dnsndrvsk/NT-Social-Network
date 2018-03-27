@@ -1,0 +1,39 @@
+.user-info {
+  position: relative;
+  
+  &__online-mark {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  &__text {
+    color: #808080;
+    border-top: 1px solid darken(#f0f0f0, 5%);
+    
+    span {
+      position: relative;
+      top: -26px;
+      left: 14px;
+      padding: 0 10px;
+      font-size: 12px;
+      color: lighten(#808080, 20%);
+      background-color: #fff;
+    }
+  }
+  
+  &__text:last-child {
+    border-bottom: 1px solid darken(#f0f0f0, 5%);
+  }
+  
+  div.row {
+    margin: 0;
+    padding: 14px 0;
+  }
+  
+  div.col {
+    padding: 0;
+  }
+}
