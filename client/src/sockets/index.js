@@ -1,18 +1,18 @@
 import io from 'socket.io-client'
-import * as ActionTypes from '../constants'
-import { getUserData } from '../actions/user'
+import config from '../config'
+import { provideActiveUserId } from '../utils/activeUser'
 
-const setupSocket = (dispatch) => {
-  const socket = io.connect('http://localhost:3002')
+let socket
 
-  const data = { userID: localStorage.NTactiveUserID }
+
+export const setupSocket = () => {
+  socket = io.connect(config.API_SERVER)
+  const data = { userID: provideActiveUserId() }
   if (data.userID) socket.emit('checkAuth', data)
-
-  socket.on('userIsBack', (res) => {
-    dispatch(getUserData(data))
+  
+  socket.on('userIsBack',(res) => {
+    alert(`Welcome back ${res.user.name}`)
   })
   
   return socket
 }
-
-export default setupSocket

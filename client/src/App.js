@@ -1,23 +1,19 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import io from 'socket.io-client'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import store from './store'
-import Router from './router/Router'
+import Router from './router'
+import { setupSocket } from './sockets'
 import './styles/main.scss'
 
 let socket
+
 
 class App extends Component {
   constructor(props) {
     super(props)
     
-    socket = io.connect('http://localhost:3002')
-    const data = { userID: localStorage.NTactiveUserID }
-    if (data.userID) socket.emit('checkAuth', data)
-    
-    socket.on('userIsBack',(res) => {
-      console.log('USER IS BAAACK')
-    })
+    socket = setupSocket()
   }
   
   componentWillUnmount() {
@@ -26,9 +22,11 @@ class App extends Component {
   
   render() {
     return (
-      <Provider store={store}>
-        <Router />
-      </Provider>
+      <MuiThemeProvider>
+        <Provider store={store}>
+          <Router />
+        </Provider>
+      </MuiThemeProvider>
     )
   }
 }

@@ -6,4 +6,4 @@ const app = new App({ config })
 app.run()
 
 const port = config.port
-opn(`http://localhost:${port}`)
+//opn(`http://localhost:${port}`)

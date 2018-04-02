@@ -39,13 +39,12 @@ class CommentList extends Component {
         <div>
           {
             this.props.reversed && this.props.comments.length > 5
-              ? <FlatButton
-                  label={this.props.label || 'Show more'}
-                  fullWidth={true}
-                  onClick={this.loadPrev}
-                  disabled={this.state.index < 0}
-                />
-              : null
+              &&  <FlatButton
+                    label={this.props.label || 'Show more'}
+                    fullWidth={true}
+                    onClick={this.loadPrev}
+                    disabled={this.state.index < 0}
+                  />
           }
         </div>
         <div>
@@ -78,13 +77,12 @@ class CommentList extends Component {
         <div>
           {
             !this.props.reversed && this.props.comments.length > 5
-              ? <FlatButton
-                  label={this.props.label || 'Show more'}
-                  fullWidth={true}
-                  onClick={this.loadMore}
-                  disabled={this.state.index > comments.length}
-                />
-              : null
+              &&  <FlatButton
+                    label={this.props.label || 'Show more'}
+                    fullWidth={true}
+                    onClick={this.loadMore}
+                    disabled={this.state.index > comments.length}
+                  />
           }
         </div>
       </List>

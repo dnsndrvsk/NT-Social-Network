@@ -61,14 +61,13 @@ class ChatPage extends Component {
                       <Paper zDepth={1}>
                         {
                           userMessages.length >= 1
-                            ? <CommentList
-                                comments={userMessages}
-                                isDeletable={isLogged && true}
-                                onDelete={this.deleteMessage}
-                                label="Show previous..."
-                                reversed={true}
-                              />
-                            : null
+                            &&  <CommentList
+                                  comments={userMessages}
+                                  isDeletable={isLogged && true}
+                                  onDelete={this.deleteMessage}
+                                  label="Show previous..."
+                                  reversed={true}
+                                />
                         }
                         <div className="chat-page__message-wrap">
                           <InputComponent

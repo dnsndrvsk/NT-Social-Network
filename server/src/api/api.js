@@ -76,7 +76,7 @@ export default (ctx) => {
         })
       }
     } catch (err) {
-      return err
+      res.status(404).send('There is no such user')
     }
   })
   

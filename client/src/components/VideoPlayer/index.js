@@ -53,13 +53,17 @@ class VideoPlayer extends Component {
                     >
                     </iframe>
                   </div>
-                  <div style={{padding: '30px 0'}}>
-                    <InputComponent
-                      hintText="Write a comment..."
-                      btnLabel="Add"
-                      onSubmit={this.addComment}
-                    />
-                  </div>
+                  {
+                    this.props.activeUser
+                      &&  <div style={{padding: '30px 0'}}>
+                            It is not working for now...
+                            <InputComponent
+                              hintText="Write a comment..."
+                              btnLabel="Add"
+                              onSubmit={this.addComment}
+                            />
+                          </div>
+                  }
                 </Dialog> 
         }
       </div>
@@ -69,9 +73,10 @@ class VideoPlayer extends Component {
 
 VideoPlayer.propTypes = {
   isOpen: PropTypes.bool,
-  playing: PropTypes.string,
+  playing: PropTypes.object,
   closeVideoPlayer: PropTypes.func.isRequired,
-  user: PropTypes.object
+  viewableUser: PropTypes.object,
+  activeUser: PropTypes.object
 }
 
 export default VideoPlayer

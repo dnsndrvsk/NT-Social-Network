@@ -71,7 +71,9 @@ const Comment = (props) => {
                 </div>
               </div>
             </div>
-            <div className="comment__message">{comment || message}</div>
+            <div className="comment__message">
+              {comment || message}
+            </div>
           </div>
         </div>
       </ListItem>

@@ -1,21 +1,22 @@
 import jwt from 'express-jwt'
-
-//adding---
 import nodemailer from 'nodemailer'
-var smtpTransport = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-        user: "ntsocialnetworktech@gmail.com",
-        pass: "foxerbixerrrr"
-    }
+
+const smtpTransport = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: "ntsocialnetworktech@gmail.com",
+    pass: "foxerbixerrrr"
+  }
 })
 let mailOptions, link
-//--------
-
 
 
 export function canonize(str) {
   return str.toLowerCase().trim()
+}
+
+export function getEmailTemplate(link) {
+  return '<div style="text-align: center; padding: 150px 0; background-color: #f1f1f1;"><div style="display: inline-block; width: 50%; padding: 40px; background-color: #fff;"><div style="padding-bottom: 30px;"><div style="font-size: 16px; line-height: 1.3; color: #777;">Greetings from</div><div style="padding-bottom: 20px; font-size: 25px; line-height: 1.5; color: #111;"><b>NT Social Network</b></div><div  style="font-size: 16px; line-height: 1.3; color: #777;">Click on the link below to verify your email address.</div></div><div style="font-size: 30px; font-weight: 700;"><a href='+link+' style="color: #00bcd4; text-decoration: none;">Verify email &#8680;</a></div></div></div>'
 }
 
 export default (ctx) => {
@@ -63,7 +64,7 @@ export default (ctx) => {
       mailOptions = {
         to: userFields.email,
         subject: "Please confirm your Email account",
-        html: '<div style="text-align: center; padding: 150px 0; background-color: #f1f1f1;"><div style="display: inline-block; width: 50%; padding: 40px; background-color: #fff;"><div style="padding-bottom: 30px;"><div style="font-size: 16px; line-height: 1.3; color: #777;">Greetings from</div><div style="padding-bottom: 20px; font-size: 25px; line-height: 1.5; color: #111;"><b>NT Social Network</b></div><div  style="font-size: 16px; line-height: 1.3; color: #777;">Click on the link below to verify your email address.</div></div><div style="font-size: 30px; font-weight: 700;"><a href='+link+' style="color: #00bcd4; text-decoration: none;">Verify email &#8680;</a></div></div></div>'
+        html: getEmailTemplate(link)
       }
       smtpTransport.sendMail(mailOptions, function(error, response) {
         if (error) {
@@ -114,7 +115,6 @@ export default (ctx) => {
           await verification.remove()
           res.end("<h1>Email has been successfully verified</h1>")
         } else {
-          console.log("email is not verified")
           res.end("<h1>Bad Request</h1>")
         }
       } catch(error) {

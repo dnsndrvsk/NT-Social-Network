@@ -62,12 +62,6 @@ class Navigation extends Component {
                   <MenuItem>My Messages</MenuItem>
                 </Link>
                 <Link
-                  to={`/videos/${this.props.activeUser._id}`}
-                  onClick={this.toggleDrawer}
-                >
-                  <MenuItem>My Videos</MenuItem>
-                </Link>
-                <Link
                   to='/friends'
                   onClick={this.toggleDrawer}
                 >
