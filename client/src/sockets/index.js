@@ -11,7 +11,9 @@ export const setupSocket = () => {
   if (data.userID) socket.emit('checkAuth', data)
   
   socket.on('userIsBack',(res) => {
-    alert(`Welcome back ${res.user.name}`)
+    if (provideActiveUserId() === res.user._id) {
+      alert(`Welcome back, ${res.user.name}!`)
+    }
   })
   
   return socket

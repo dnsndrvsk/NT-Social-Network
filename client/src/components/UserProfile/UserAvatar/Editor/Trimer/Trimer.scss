@@ -1,0 +1,18 @@
+.trimer {
+  
+  .col.s6:first-child {
+    position: relative;
+    z-index: 100;
+    
+    canvas {
+      position: relative;
+      z-index: 500;
+      cursor: pointer;
+    }
+  }
+  
+  &__btns-wrap > * {
+    float: left;
+    width: 50%;
+  }
+}

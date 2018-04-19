@@ -38,13 +38,19 @@ export default (ctx) => {
     return res.status(400).send('Did not find username, email, login parameters')
   }
   
-  resourse.validate = async function (req) {
-    const user = await User.findById(req.user._id)
-    if (!user) return res.status(404).send('No user found in database')
-    return {
-      __pack: 1,
-      jwt: req.user,
-      user: user
+  resourse.validate = async function (req , res) {
+    try {
+      const user = await User.findById(req.user._id)
+      if (!user) {
+        return res.status(404).send('No user found in database')
+      }
+      return {
+        __pack: 1,
+        jwt: req.user,
+        user: user
+      }
+    } catch(error) {
+      return res.status(500).send({ error })
     }
   }
   
@@ -53,11 +59,12 @@ export default (ctx) => {
       const userFields = resourse.getUserFields(req, res)
       const criteria = resourse.getUserCriteria(req, res)
       const existUser = await User.findOne(criteria)
-      if (existUser) return res.status(400).send('Username with this email or username is already registered')
+      if (existUser) {
+        return res.status(400).send('Username with this email or username is already registered')
+      }
       
       const user = new User(userFields)
       await user.save()
-      // rand = Math.floor((Math.random() * 100) + 54)
       const verification = new Verification({ user: user._id })
       await verification.save()
       link = "http://" + req.get('host') + "/api/auth/verify?id=" + verification._id
@@ -68,8 +75,7 @@ export default (ctx) => {
       }
       smtpTransport.sendMail(mailOptions, function(error, response) {
         if (error) {
-          console.log(error)
-          return res.status(500).send(error)
+          return res.status(500).send({ error })
         } else {
           console.log("Message sent: " + response.message)
         }
@@ -79,25 +85,32 @@ export default (ctx) => {
         success: true,
         message: 'Waiting for account verification'
       })
-    } catch(err) {
-      console.log(err)
-      return res.status(500).json(err)
+    } catch(error) {
+      return res.status(500).json(error)
     }
   }
   
   resourse.verification = async function (req, res) {
     const { userID } = req.query
     if (!userID) return res.status(400).send('There is no user to verify')
-    const user = await User.findOneAndUpdate({_id: userID}, {$set: {'online.currently': true}})
-    if (!user) return res.status(404).send('There is no such user')
-    if (user.isVerified) {
-      return res.json({
-        __pack: 1,
-        user,
-        token: user.generateAuthToken()
+    
+    try {
+      const user = await User.findOneAndUpdate({ _id: userID }, {
+        $set: { 'online.currently': true }
       })
-    } else {
-      return res.status(400).send('This account is not verified yet')
+      
+      if (!user) return res.status(404).send('There is no such user')
+      if (user.isVerified) {
+        return res.json({
+          __pack: 1,
+          user,
+          token: user.generateAuthToken()
+        })
+      } else {
+        return res.status(400).send('This account is not verified yet')
+      }
+    } catch(error) {
+      return res.status(500).send({ error })
     }
   }
   
@@ -125,34 +138,33 @@ export default (ctx) => {
 
   resourse.login = async function (req, res) {
     const params = resourse.getUserFields(req, res)
-    
     if (!params.password) return res.status(400).send('Password parameter not passed')
-
     const criteria = resourse.getUserCriteria(req)
-    const user = await User.findOneAndUpdate(criteria, {$set: {'online.currently': true}})
-
-    if (!user) return res.status(404).send('No user found in database')
-
-    if (!await user.verifyPassword(params.password)) {
-      return res.status(400).send('The given password does not match')
-    }
     
-    if (user && !user.isVerified) return res.status(401).send({message: 'This account is not verified yet', userID: user._id})
-
-    return res.json({
-      __pack: 1,
-      user,
-      token: user.generateAuthToken()
-    })
+    try {
+      const user = await User.findOneAndUpdate(criteria, {$set: {'online.currently': true}})
+      if (!user) return res.status(404).send('No user found in database')
+      if (!await user.verifyPassword(params.password)) {
+        return res.status(400).send('The given password does not match')
+      }
+      if (user && !user.isVerified) return res.status(401).send({message: 'This account is not verified yet', userID: user._id})
+      return res.json({
+        __pack: 1,
+        user,
+        token: user.generateAuthToken()
+      })
+    } catch(error) {
+      return res.status(500).send({ error })
+    }
   }
   
   resourse.logout = async function(req, res) {
     const { userID } = req.body
     try {
       await User.findOneAndUpdate({_id: userID}, {$set: {'online.currently': false, 'online.lastOnline': new Date}})
-      res.json({ success: true })
+      return res.json({ success: true })
     } catch (error) {
-      res.status(500).send('Something went wrong')
+      return res.status(500).send({ error })
     }
   }
 

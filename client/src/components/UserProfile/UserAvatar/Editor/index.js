@@ -46,14 +46,7 @@ class Editor extends Component {
           open={this.state.open}
           onRequestClose={this.toggleForm}
         >
-          <div className="editor__image-wrap">
-            <img
-              className="editor__image"
-              src={this.props.image}
-              alt="blah blah"
-            />
-            <Trimer />
-          </div>
+          <Trimer image={this.props.image} />
         </Dialog>
       </div>
     )

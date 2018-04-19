@@ -75,7 +75,7 @@ export default (ctx) => {
           isLiked
         })
       }
-    } catch (err) {
+    } catch (error) {
       res.status(404).send('There is no such user')
     }
   })
@@ -103,8 +103,8 @@ export default (ctx) => {
       res.json({
         users
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      res.status(500).send({ error })
     }
   })
   
@@ -120,8 +120,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      res.status(500).send({ error })
     }
   })
   

@@ -7,6 +7,9 @@ export const activeUser = (state = null, action) => {
     case actionTypes.UPDATE_USER_DATA:
     case actionTypes.FRIEND_REQUEST_ACCEPTED:
     case actionTypes.FRIEND_REQUEST_DELETED:
+      if (JSON.stringify(state) == JSON.stringify(action.payload.activeUser)) {
+        return state
+      }
       return state = action.payload.activeUser
     case actionTypes.USER_REGISTRATION:
       return state

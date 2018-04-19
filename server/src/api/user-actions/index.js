@@ -45,8 +45,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -74,8 +74,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -95,8 +95,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -111,8 +111,8 @@ export default (ctx) => {
       res.json({
         wasRequestSent: true
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -167,8 +167,8 @@ export default (ctx) => {
           user
         })
       }
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -190,8 +190,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -209,8 +209,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -396,8 +396,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -430,8 +430,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -454,8 +454,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -473,8 +473,8 @@ export default (ctx) => {
       res.json({
         user
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -513,8 +513,8 @@ export default (ctx) => {
         user,
         isLiked
       })
-    } catch (err) {
-      return err
+    } catch (error) {
+      return res.status(500).send({ error })
     }
   })
   
@@ -540,7 +540,7 @@ export default (ctx) => {
         user
       })
     } catch(error) {
-      res.status(500).send('Something went wrong')
+      return res.status(500).send({ error })
     }
     
   })
